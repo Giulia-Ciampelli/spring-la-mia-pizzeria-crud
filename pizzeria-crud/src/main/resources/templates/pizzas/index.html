@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/style :: headTags}"></div>
+    <title>Pizzas</title>
+</head>
+
+<body>
+    <h1>
+        Here are our pizzas:
+    </h1>
+    
+    <div class="row">
+        <div class="col-4">
+            <div class="card" th:each="pizza : ${pizzas}" th:object="${pizza}">
+                <p class="card-text">
+                    [[*{name}]]
+                </p>
+                <p class="card-text">
+                    [[*{description}]]
+                </p>
+                <p class="card-text">
+                    [[*{price}]]
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/style :: scripts}"></div>
+</body>
+
+</html>
