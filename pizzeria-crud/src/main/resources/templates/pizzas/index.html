@@ -7,22 +7,25 @@
 </head>
 
 <body>
-    <h1>
+    <h1 class="text-center my-4">
         Here are our pizzas:
     </h1>
     
-    <div class="row">
-        <div class="col-4">
-            <div class="card" th:each="pizza : ${pizzas}" th:object="${pizza}">
-                <p class="card-text">
+    <div class="row justify-content-center">
+        <div class="col-4 m-2" th:each="pizza : ${pizzas}" th:object="${pizza}" th:if="${pizzas.size() > 0}">
+            <div class="card align-items-center">
+                <p class="card-title fw-bold fs-3">
                     [[*{name}]]
                 </p>
                 <p class="card-text">
                     [[*{description}]]
                 </p>
                 <p class="card-text">
-                    [[*{price}]]
+                    [[*{price}]]€
                 </p>
+
+                <!-- testo in caso il db sia vuoto -->
+                <p th:text="Sorry! There are no books available at the moment." th:unless="${pizzas.size() > 0}"></p>
             </div>
         </div>
     </div>
