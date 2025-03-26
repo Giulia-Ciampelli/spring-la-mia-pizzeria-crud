@@ -7,25 +7,23 @@
 </head>
 
 <body>
-    <h1 class="text-center my-4">
-        Here are our pizzas:
-    </h1>
+    <div th:replace="~{fragments/header :: header('Here are our pizzas:')}"></div>
     
-    <div class="row justify-content-center">
-        <div class="col-4 m-2" th:each="pizza : ${pizzas}" th:object="${pizza}" th:if="${pizzas.size() > 0}">
-            <div class="card align-items-center">
-                <p class="card-title fw-bold fs-3">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="row justify-content-center mx-0">
+        <div class="col-sm-12 col-md-4 m-2" th:each="pizza : ${pizzas}" th:object="${pizza}" th:if="${pizzas.size() > 0}">
+            <div class="card align-items-center px-4 back-cheese">
+                <a class="card-title fw-bold fs-3 text-decoration-none" th:href="|/pizzas/*{id}|">
                     [[*{name}]]
-                </p>
-                <p class="card-text">
-                    [[*{description}]]
-                </p>
+                </a>
+                <img class="img-fluid" th:src="*{url}" th:alt="*{name}">
                 <p class="card-text">
                     [[*{price}]]€
                 </p>
 
                 <!-- testo in caso il db sia vuoto -->
-                <p th:text="Sorry! There are no books available at the moment." th:unless="${pizzas.size() > 0}"></p>
+                <p th:text="Sorry! There are no pizzas available at the moment." th:unless="${pizzas.size() > 0}"></p>
             </div>
         </div>
     </div>

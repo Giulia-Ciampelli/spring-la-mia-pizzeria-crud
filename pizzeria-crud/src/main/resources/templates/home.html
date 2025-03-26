@@ -5,9 +5,9 @@
     <title>Home</title>
 </head>
 <body>
-    <h1 class="text-center my-4">
-        Questa è la homepage
-    </h1>
+    <div th:replace="~{fragments/header :: header('This is the homepage')}"></div>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <div th:replace="~{fragments/style :: scripts}"></div>
 </body>
