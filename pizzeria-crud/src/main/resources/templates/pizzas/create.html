@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/style :: headTags}"></div>
+    <title>New pizza</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header('Add a new pizza')}"></div>
+    
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="container">
+        <div class="row">
+            <div class="col-8">
+                <form th:action="@{/books/create}">
+                    form futuro
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/style :: scripts}"></div>
+</body>
+
+</html>
