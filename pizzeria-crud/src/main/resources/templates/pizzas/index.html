@@ -13,10 +13,30 @@
 
     <main class="flex-grow-1">
         <div class="row justify-content-center mx-0">
-            <div class="mb-3 d-flex">
-                <a th:href="@{/pizzas/create}" class="btn back-basil">
-                    Add a pizza
-                </a>
+            <div class="d-flex py-4 justify-content-evenly">
+
+                <!-- sezione ricerca per nome -->
+                <div class="d-flex flex-column mb-3">
+                    <form th:action="@{/pizzas/search-by-name}" class="d-flex" method="get">
+                        <input type="text" class="form-control mx-3" id="name-search" name="name"
+                            placeholder="Search by name...">
+                        <input type="submit" class="btn btn-secondary" value="Search">
+                    </form>
+
+                    <!-- messaggio se non ci sono pizze trovate -->
+                    <div class="d-flex my-5 justify-content-center align-content-center">
+                        <h1 th:if="${pizzas.isEmpty()}">
+                            Sorry! No pizzas found
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- bottone verso create -->
+                <div class="mb-3">
+                    <a th:href="@{/pizzas/create}" class="btn back-basil cheese">
+                        Add a pizza
+                    </a>
+                </div>
             </div>
             <div class="col-sm-12 col-md-4 m-2" th:each="pizza : ${pizzas}" th:object="${pizza}"
                 th:if="${pizzas.size() > 0}">
@@ -28,19 +48,19 @@
                     <p class="card-text mt-3">
                         [[*{price}]]€
                     </p>
-    
+
                     <!-- bottoni edit e delete -->
                     <div class="d-flex pb-3 w-100 justify-content-evenly">
                         <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-light">
                             Edit
                         </a>
-    
+
                         <!-- bottone con modale -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             th:data-bs-target="'#delete-modal-' + ${pizza.id}">
                             Delete
                         </button>
-    
+
                         <!-- modale di bootstrap -->
                         <div class="modal fade" th:id="delete-modal- + ${pizza.id}" tabindex="-1"
                             aria-labelledby="delete-modal-" aria-hidden="true">
@@ -55,7 +75,7 @@
                                         This pizza will be permanently deleted. Are you sure you want to proceed?
                                     </div>
                                     <div class="modal-footer">
-    
+
                                         <!-- vero bottone di cancellazione -->
                                         <form class="d-inline-block" th:action="@{/pizzas/delete/{id}(id=${pizza.id})}"
                                             method="post">
@@ -63,7 +83,7 @@
                                                 Delete
                                             </button>
                                         </form>
-    
+
                                         <!-- bottone che fa uscire dalla modale -->
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                             <span aria-hidden="true">
@@ -75,14 +95,15 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <!-- testo in caso il db sia vuoto -->
-                    <p th:text="Sorry! There are no pizzas available at the moment." th:unless="${pizzas.size() > 0}"></p>
+                    <p th:text="Sorry! There are no pizzas available at the moment." th:unless="${pizzas.size() > 0}">
+                    </p>
                 </div>
             </div>
         </div>
     </main>
-    
+
     <div th:replace="~{fragments/footer :: footer}"></div>
 
     <div th:replace="~{fragments/style :: scripts}"></div>
