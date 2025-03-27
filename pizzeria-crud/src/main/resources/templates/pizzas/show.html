@@ -5,7 +5,7 @@
     <title th:text="${pizza.name}"></title>
 </head>
 <body>
-    <div th:replace="~{fragments/header :: header('Pizza ${pizza.name}')}"></div>
+    <div th:replace="~{fragments/header :: header('Pizza ' + ${pizza.name})}"></div>
     
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 

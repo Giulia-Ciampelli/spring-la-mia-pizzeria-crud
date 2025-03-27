@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/pizzas")
 public class PizzaController {
-    
+
     // dependency injection
     @Autowired
     private PizzaRepository repository;
@@ -31,7 +31,7 @@ public class PizzaController {
         model.addAttribute("pizzas", pizzas);
         return "pizzas/index";
     }
-    
+
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         Pizza pizza = repository.findById(id).get();
@@ -45,7 +45,7 @@ public class PizzaController {
         model.addAttribute("pizza", new Pizza());
         return "pizzas/create";
     }
-    
+
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
 
@@ -58,5 +58,25 @@ public class PizzaController {
         repository.save(formPizza);
         return "redirect:/pizzas";
     }
-    
+
+    // update
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("pizza", repository.findById(id).get());
+        return "pizzas/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable int id, @Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
+
+        // controllo errori
+        if (bindingResult.hasErrors()) {
+            return "pizzas/edit";
+        }
+
+        // salvataggio con la repository
+        repository.save(formPizza);
+        return "redirect:/pizzas";
+    }
+
 }

@@ -26,6 +26,14 @@
                 <p class="card-text">
                     [[*{price}]]€
                 </p>
+
+                <!-- bottoni edit e delete -->
+                <div class="d-flex pb-3">
+                    <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-light">
+                        Edit
+                    </a>
+                </div>
+
                 <!-- testo in caso il db sia vuoto -->
                 <p th:text="Sorry! There are no pizzas available at the moment." th:unless="${pizzas.size() > 0}"></p>
             </div>
