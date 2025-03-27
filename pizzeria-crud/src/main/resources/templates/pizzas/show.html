@@ -16,15 +16,17 @@
                     [[*{name}]]
                 </p>
                 <img class="img-fluid" th:src="*{url}" th:alt="*{name}">
-                <p class="card-text">
-                    [[*{description}]]
+                <p class="card-text mt-3">
+                    <strong>Description: </strong>[[*{description}]]
                 </p>
-                <p class="card-text">
-                    Price: [[*{price}]]€
+                <p class="card-text my-3">
+                    <strong>Price: </strong>[[*{price}]]€
                 </p>
             </div>
         </div>
     </div>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
 
     <div th:replace="~{fragments/style :: scripts}"></div>
 </body>
