@@ -6,12 +6,12 @@
     <title>Home</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div th:replace="~{fragments/header :: header('This is the homepage')}"></div>
 
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <main class="container">
+    <main class="container flex-grow-1">
         <div class="row">
             <div class="col">
                 <h2 class="my-4">

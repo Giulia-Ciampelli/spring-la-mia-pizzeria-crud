@@ -6,12 +6,12 @@
     <title>New pizza</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div th:replace="~{fragments/header :: header('Add a new pizza')}"></div>
     
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <main class="container">
+    <main class="container flex-grow-1">
         <div class="row">
             <div class="col-8">
                 <form id="pizza-form" th:action="@{/pizzas/create}" method="post" th:object="${pizza}">
